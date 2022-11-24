@@ -1,48 +1,55 @@
 <template>
- <v-container fluid>
+  <v-container fluid>
+    <v-form>
+      <v-file-input
+        label="Selecione as Legendas"
+        prepend-icon="mdi-message-text"
+        append-outer-icon="mdi-send"
+        outlined
+        mutiple
+        chips
+        v-model="files"
+      @clcik:append-outer="processSubtitles" />
+    </v-form>
     <div class="pills">
-        <Pill v-for="word in groupedWords" :key="word.name" 
-        :name="word.name" :amount="word.amount"/>
+      <Pill
+        v-for="word in groupedWords"
+        :key="word.name"
+        :name="word.name"
+        :amount="word.amount"
+      />
     </div>
- </v-container>
+  </v-container>
 </template>
 
 <script>
-import Pill from './Pill.vue'
+import Pill from "./Pill.vue";
 
 export default {
-    components: {Pill},
-    data: function(){
-        return{
-            groupedWords:[
-                { name:'you', amount:900},
-                { name:'he', amount:853},
-                { name:'i', amount:1234},
-                { name:'you', amount:900},
-                { name:'he', amount:853},
-                { name:'i', amount:1234},
-                { name:'you', amount:900},
-                { name:'he', amount:853},
-                { name:'i', amount:1234},
-                { name:'you', amount:900},
-                { name:'he', amount:853},
-                { name:'i', amount:1234},
-                { name:'you', amount:900},
-                { name:'he', amount:853},
-                { name:'i', amount:1234},
-                { name:'you', amount:900},
-                { name:'he', amount:853},
-                { name:'i', amount:1234},
-            ]
-        }
-    }
-}
+  components: { Pill },
+  data: function () {
+    return {
+      files: [],
+      groupedWords: [
+        { name: "you", amount: 900 },
+        { name: "he", amount: 853 },
+        { name: "i", amount: 1234 },
+        
+      ],
+    };
+  },
+  methods: {
+    processSubtitles() {
+      console.log(this.files);
+    },
+  },
+};
 </script>
 
 <style>
-.pills{
-    display: flex;
-     flex-wrap: wrap;
-     justify-content: space-between;
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 </style>
